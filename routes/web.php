@@ -43,4 +43,7 @@ Route::controller(NoteController::class)->group(function(){
 
 Route::controller(AdminController::class)->group(function(){
     Route::get('admin/index','index');
+    Route::get('admin/edit/{id}','edit');
+    Route::post('admin/edit/{id}','update');
+    Route::get('admin/delete/{id}','destroy');
 });

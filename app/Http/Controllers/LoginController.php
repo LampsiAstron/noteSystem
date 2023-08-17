@@ -14,13 +14,12 @@ class LoginController extends Controller
         $user = DB::table('users')->where('email','=',$request->input('email'))->where('password','=',$request->input('password'))->first();
         if($user==null){
             return redirect('login');
-           
         }else{
             session(['user'=>$user]);
-            if($user->type == 1){
-                return redirect('notes');
+            if($user->email == 'admin@admin.com'){
+                return redirect('admin/index');
             }
-            return redirect('admin/index');
+            return redirect('notes');
         }
         
     }

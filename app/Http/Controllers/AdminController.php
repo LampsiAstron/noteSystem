@@ -58,7 +58,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.edit',[
+            'users'=>DB::table('users')->where('id',$id)->first(),
+        ]);
     }
 
     /**
@@ -70,7 +72,12 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('users')->where('id',$id)->update([
+            'name'=>$request->input('name'),
+            'username'=>$request->input('username'),
+            'email'=>$request->input('email'),
+        ]);
+        return redirect('admin/index');
     }
 
     /**
@@ -81,6 +88,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('users')->where('id',$id)->delete();
+        return redirect('admin/index')->with('message','Deleted Successfully');
     }
 }

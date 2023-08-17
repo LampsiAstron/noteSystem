@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Hi, {{session('user')->name}}!</h1>
+    @if(session('message'))
+    <p>{{session('message')}}</p>
+    @endif
     <table border="1">
         <tr>
             <th>ID</th>
@@ -24,8 +27,8 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->created_at}}</td>
                 <td>
-                    <a href="admin/edit/{{$user->id}}">Edit</a>
-                    <a href="admin/delete/{{$user->id}}">Delete</a>
+                    <a href="edit/{{$user->id}}">Edit</a>
+                    <a href="delete/{{$user->id}}">Delete</a>
                 </td>
             </tr>
         @endforeach
